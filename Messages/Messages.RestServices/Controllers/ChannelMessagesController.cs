@@ -83,12 +83,14 @@
             this.Data.ChannelMessages.Add(channelMessage);
             this.Data.SaveChanges();
 
-            //return this.Ok("message created");
-            return this.CreatedAtRoute("GetById", new { id = channelMessage.Id },  
-                this.Data.ChannelMessages
-                .Where(x => x.Id == channelMessage.Id)
-                .Select(ChannelMessageDataModel.DataModel)
-                .FirstOrDefault());
+            return this.CreatedAtRoute("GetById", new {id = channelMessage.Id}, ChannelMessageDataModel.ReturnFix(channelMessage));
+
+//            //return this.Ok("message created");
+//            return this.CreatedAtRoute("GetById", new { id = channelMessage.Id },  
+//                this.Data.ChannelMessages
+//                .Where(x => x.Id == channelMessage.Id)
+//                .Select(ChannelMessageDataModel.DataModel)
+//                .FirstOrDefault());
         }
     }
 }
