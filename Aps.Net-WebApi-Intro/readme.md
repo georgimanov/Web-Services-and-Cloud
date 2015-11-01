@@ -7,10 +7,8 @@ ASP.NET Web API Homework
 	*	Create services for all available models.
 	*	Do not use scaffolding.
 	
-	## Entity Framework Code First
-	### _Homework_
+    1.1.  Students system:
 
-1.1.  Using c0de first approach, create database for student system with the following tables:
   * `Students`
     * fields: Id, Name, Number, etc.
   * `Courses`
@@ -21,8 +19,8 @@ ASP.NET Web API Homework
     * one-to-many relationship with students and courses
     * fields: Content, TimeSent
   * Annotate the data models with the appropriate attributes and enable code first migrations
-1.1.  Write a console application that uses the data
-1.1.  Seed the data with random values
+
+    1.2.   Seed the data with random values
 
 2. Using ASP.NET Web API and Entity Framework (database first or code first) create a database and web services with full CRUD (create, read, update, delete) operations for hierarchy of following classes:
 	*	Artists (Name, Country, DateOfBirth, etc.)
