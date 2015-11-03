@@ -5,7 +5,7 @@
     using System.Data.Entity.Infrastructure;
 
     using Models;
-
+    
     public interface IStudentsDbContext
     {
         IDbSet<Student> Students { get; set; }
@@ -14,7 +14,7 @@
 
         IDbSet<Course> Courses { get; set; }
 
-        IDbSet<TEntity> Set<TEntity>() where TEntity : class;
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 

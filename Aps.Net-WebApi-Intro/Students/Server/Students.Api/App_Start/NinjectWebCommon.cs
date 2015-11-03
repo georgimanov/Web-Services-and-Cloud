@@ -57,7 +57,7 @@ namespace Students.Api.App_Start
             kernel
                 .Bind<IStudentsDbContext>()
                 .To<StudentsDbContext>()
-                .InSingletonScope();
+                .InRequestScope();
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
 

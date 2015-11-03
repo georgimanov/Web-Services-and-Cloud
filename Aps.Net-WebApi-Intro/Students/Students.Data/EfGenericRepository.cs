@@ -92,7 +92,7 @@
             entry.State = EntityState.Detached;
         }
 
-        Guid IRepository<T>.SaveChanges()
+        public virtual Guid IRepository<T>.SaveChanges()
         {
             return this.Context.SaveChanges();
         }

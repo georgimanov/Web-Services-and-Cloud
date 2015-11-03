@@ -22,15 +22,5 @@
         {
             return new StudentsDbContext();
         }
-
-        IDbSet<TEntity> IStudentsDbContext.Set<TEntity>()
-        {
-            throw new NotImplementedException();
-        }
-
-        Guid IStudentsDbContext.SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

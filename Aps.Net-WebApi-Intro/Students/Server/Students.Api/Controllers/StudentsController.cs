@@ -1,21 +1,24 @@
 ﻿namespace Students.Api.Controllers
 {
-    using Models.Students;
     using System.Linq;
     using System.Web.Http;
-    using DataServices.Contracts;
-    using Students.Models;
+
     using Data.Contracts;
+    using DataServices.Contracts;
+    using Models.Students;
+    using Students.Models;
+    using System.Web.Http.Cors;
 
     public class StudentsController : ApiController
     {
         private readonly IStudentsService students;
 
-        public StudentsController(IRepository<Student> studentsRepo)
+        public StudentsController(IStudentsService studentsRepo)
         {
             this.students = studentsRepo;
         }
 
+        [EnableCors("*", "*", "*")]
         public IHttpActionResult Get()
         {
             var result = this.students
