@@ -74,9 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IRepository.cs" />
-    <Compile Include="Contracts\IStudentsDbContext.cs" />
+    <Compile Include="Contracts\IStudentsSystemDbContext.cs" />
     <Compile Include="EfGenericRepository.cs" />
-    <Compile Include="Migrations\StudentsConfiguration.cs" />
+    <Compile Include="Migrations\StudentsSystemConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentsDbContext.cs" />
   </ItemGroup>

@@ -8,8 +8,8 @@
     {
         public static void Initialize()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentsDbContext, StudentsConfiguration>());
-            StudentsDbContext.Create().Database.Initialize(true);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentsSystemDbContext, StudentsSystemConfiguration>());
+            StudentsSystemDbContext.Create().Database.Initialize(true);
         }
     }
 }

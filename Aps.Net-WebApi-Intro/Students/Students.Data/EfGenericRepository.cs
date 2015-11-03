@@ -8,7 +8,7 @@
 
     public class EfGenericRepository<T> : IRepository<T> where T : class
     {
-        public EfGenericRepository(IStudentsDbContext context)
+        public EfGenericRepository(IStudentsSystemDbContext context)
         {
             if (context == null)
             {
@@ -19,9 +19,11 @@
             this.DbSet = this.Context.Set<T>();
         }
 
-        protected IDbSet<T> DbSet { get; set; }
+        protected IDbSet<T> DbSet
+        { get; set; }
 
-        protected IStudentsDbContext Context { get; set; }
+        protected IStudentsSystemDbContext Context
+        { get; set; }
 
         public virtual IQueryable<T> All()
         {
@@ -92,7 +94,7 @@
             entry.State = EntityState.Detached;
         }
 
-        public virtual Guid IRepository<T>.SaveChanges()
+        public virtual int SaveChanges()
         {
             return this.Context.SaveChanges();
         }

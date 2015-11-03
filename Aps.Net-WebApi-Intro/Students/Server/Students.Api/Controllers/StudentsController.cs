@@ -11,9 +11,9 @@
 
     public class StudentsController : ApiController
     {
-        private readonly IStudentsService students;
+        private readonly IStudentsSystemService students;
 
-        public StudentsController(IStudentsService studentsRepo)
+        public StudentsController(IStudentsSystemService studentsRepo)
         {
             this.students = studentsRepo;
         }

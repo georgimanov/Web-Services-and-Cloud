@@ -8,11 +8,11 @@
     using Data.Contracts;
     using Models;
 
-    public class StudentsService : IStudentsService
+    public class StudentsSystemService : IStudentsSystemService
     {
         private readonly IRepository<Student> students;
 
-        public StudentsService(IRepository<Student> studentsRepo)
+        public StudentsSystemService(IRepository<Student> studentsRepo)
         {
             this.students = studentsRepo;
         }
@@ -38,6 +38,16 @@
                 .OrderBy(s => s.Name)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize);
+        }
+
+        public int Update(string name, long number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

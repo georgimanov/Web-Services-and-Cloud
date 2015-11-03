@@ -6,7 +6,7 @@
 
     using Models;
     
-    public interface IStudentsDbContext
+    public interface IStudentsSystemDbContext
     {
         IDbSet<Student> Students { get; set; }
 
@@ -20,6 +20,6 @@
 
         void Dispose();
 
-        Guid SaveChanges();
+        int SaveChanges();
     }
 }

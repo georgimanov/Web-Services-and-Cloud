@@ -21,6 +21,6 @@
 
         void Detach(T entity);
 
-        Guid SaveChanges();
+        int SaveChanges();
     }
 }

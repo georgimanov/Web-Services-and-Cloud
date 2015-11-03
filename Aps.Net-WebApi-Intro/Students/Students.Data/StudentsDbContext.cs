@@ -3,11 +3,10 @@
     using Models;
     using System.Data.Entity;
     using Contracts;
-    using System;
 
-    public class StudentsDbContext : DbContext, IStudentsDbContext
+    public class StudentsSystemDbContext : DbContext, IStudentsSystemDbContext
     {
-        public StudentsDbContext()
+        public StudentsSystemDbContext()
             : base("Students")
         {
         }
@@ -18,9 +17,9 @@
 
         public virtual IDbSet<Homework> Homeworks { get; set; }
 
-        public static StudentsDbContext Create()
+        public static StudentsSystemDbContext Create()
         {
-            return new StudentsDbContext();
+            return new StudentsSystemDbContext();
         }
     }
 }

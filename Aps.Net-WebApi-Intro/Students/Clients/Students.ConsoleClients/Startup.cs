@@ -9,9 +9,9 @@
     {
         static void Main()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentsDbContext, StudentsConfiguration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentsSystemDbContext, StudentsSystemConfiguration>());
 
-            var db = new StudentsDbContext();
+            var db = new StudentsSystemDbContext();
 
             db.Courses.Count();
         }

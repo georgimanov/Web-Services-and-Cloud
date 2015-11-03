@@ -1,5 +1,5 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Students.Api.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Students.Api.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Students.Api.App_Start.NinjectConfig), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Students.Api.App_Start.NinjectConfig), "Stop")]
 
 namespace Students.Api.App_Start
 {
@@ -18,7 +18,7 @@ namespace Students.Api.App_Start
     using DataServices.Contracts;
     using DataServices;
 
-    public static class NinjectWebCommon 
+    public static class NinjectConfig 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -55,8 +55,8 @@ namespace Students.Api.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel
-                .Bind<IStudentsDbContext>()
-                .To<StudentsDbContext>()
+                .Bind<IStudentsSystemDbContext>()
+                .To<StudentsSystemDbContext>()
                 .InRequestScope();
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
@@ -65,7 +65,7 @@ namespace Students.Api.App_Start
             //kernel.Bind(b => b.From(Assemblies.DataServices)
             //    .SelectAllClasses()
             //    .BindDefaultInterface());
-            kernel.Bind<IStudentsService>().To<StudentsService>();
+            kernel.Bind<IStudentsSystemService>().To<StudentsSystemService>();
         }
     }
 }
