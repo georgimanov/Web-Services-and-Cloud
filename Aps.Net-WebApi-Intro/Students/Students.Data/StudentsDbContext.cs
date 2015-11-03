@@ -7,7 +7,7 @@
     public class StudentsSystemDbContext : DbContext, IStudentsSystemDbContext
     {
         public StudentsSystemDbContext()
-            : base("Students")
+            : base("StudentsSystem")
         {
         }
 

@@ -3,10 +3,8 @@
     using System.Linq;
     using System.Web.Http;
 
-    using Data.Contracts;
     using DataServices.Contracts;
     using Models.Students;
-    using Students.Models;
     using System.Web.Http.Cors;
 
     public class StudentsController : ApiController
