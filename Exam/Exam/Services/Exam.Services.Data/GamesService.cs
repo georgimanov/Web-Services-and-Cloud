@@ -40,6 +40,27 @@
             return newGame;
         }
 
+        public bool GameCanBeJoinedByUser(int id, string userId)
+        {
+            return !this.games.All().Any(g => g.Id == id && g.RedUser.Id == userId);
+        }
+             
+
+        public IQueryable<Game> GetGameDetails(int id)
+        {
+            return this.games.All().Where(g => g.Id == id);
+        }
+
+        public string JoinGame(int id, string userId)
+        {
+            var gameToJoin = this.games.GetById(id);
+            gameToJoin.BlueUser.Id = userId;
+            this.games.SaveChanges();
+            // TODO: game state!
+
+            return gameToJoin.Name;
+        }
+
         // Some additional helpers
         public IQueryable<Game> GetFollowingGames(int page = 1)
         {
@@ -78,5 +99,7 @@
                 .Take(GameConstants.GamesPerPage)
                 .AsQueryable<Game>();
         }
+
+       
     }
 }

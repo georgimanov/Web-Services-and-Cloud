@@ -41,7 +41,8 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Game, PublicGameResponseModel>()
-                .ForMember(g => g.Blue, opts => opts.MapFrom(g => g.BlueUser == null ? "No blue player yet!" : g.BlueUser.Email));
+                .ForMember(g => g.Blue, opts => opts.MapFrom(g => g.BlueUser == null ? "No blue player yet!" : g.BlueUser.Email))
+                 .ForMember(g => g.Red, opts => opts.MapFrom(g => g.RedUser == null ? "No red player yet!" : g.RedUser.Email));
         }
     }
 }

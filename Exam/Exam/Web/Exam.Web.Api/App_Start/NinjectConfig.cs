@@ -6,9 +6,12 @@
     using Data.Repositories;
     using Data;
     using Ninject;
+    using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
     using Services.Data;
     using Services.Data.Contracts;
+    using Commmon.Providers;
+    using Common.Constants;
 
     public static class NinjectConfig
     {
@@ -35,7 +38,14 @@
             kernel.Bind<IExamDbContext>().To<ExamDbContext>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
 
-            kernel.Bind<IGamesService>().To<GamesService>();
+            kernel.Bind<IRandomProvider>().To<RandomProvider>();
+
+            kernel.Bind(b => b
+            .From(Assemblies.DataServices)
+            .SelectAllClasses()
+            .BindDefaultInterface());
+
+           // kernel.Bind<IGamesService>().To<GamesService>();
         }
     }
 }

@@ -8,6 +8,8 @@
     using Microsoft.AspNet.Identity;
     using Infrastructure.Validation;
     using AutoMapper;
+    using System.Net.Http;
+    using System.Net;
 
     public class GamesController : ApiController
     {
@@ -36,13 +38,29 @@
             var newGame = this.games.CreateGame(
                  model.Name,
                  model.Number,
-                 model.UserId);
+                 this.User.Identity.GetUserId());
 
-            var gameResult = Mapper.Map<PublicGameResponseModel>(newGame);
+            var gameResult = this.games
+                .GetGameDetails(newGame.Id)
+                .ProjectTo<PublicGameResponseModel>()
+                .FirstOrDefault();
 
-            //this.Request.crea
+            var location = string.Format("api/games/{0}", newGame.Id);
 
-            return this.Ok(gameResult);
+            return this.Created(location, gameResult);
+        }
+
+        [Authorize]
+        [ValidateModel]
+        public IHttpActionResult Put(int id)
+        {
+            var userId = this.User.Identity.GetUserId();
+            if (this.games.GameCanBeJoinedByUser(id, userId))
+            {
+                return this.BadRequest("Game've already joined the game!");
+            }
+
+            return null; 
         }
     }
 }
