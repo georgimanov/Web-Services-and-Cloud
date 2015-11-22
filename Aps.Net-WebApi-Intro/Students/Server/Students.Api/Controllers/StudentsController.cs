@@ -6,6 +6,9 @@
     using DataServices.Contracts;
     using Models.Students;
     using System.Web.Http.Cors;
+    using AutoMapper.QueryableExtensions;
+    using AutoMapper;
+    using Students.Models;
 
     public class StudentsController : ApiController
     {
@@ -19,9 +22,11 @@
         [EnableCors("*", "*", "*")]
         public IHttpActionResult Get()
         {
+            Mapper.CreateMap<Student, StudentsDataResponseModel>();
+
             var result = this.students
                 .All()
-                .Select(StudentsDataResponseModel.FromModel)
+                .ProjectTo<StudentsDataResponseModel>()
                 .ToList();
 
             return this.Ok(result);
@@ -41,7 +46,7 @@
                 .Select(StudentsDataResponseModel.FromModel)
                 .FirstOrDefault();
 
-            if(result == null)
+            if (result == null)
             {
                 return this.NotFound();
             }
