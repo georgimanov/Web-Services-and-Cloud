@@ -25,6 +25,22 @@
                 .Take(GameConstants.GamesPerPage);
         }
 
+        public Game CreateGame(string name, string number, string userId)
+        {
+            var newGame = new Game
+            {
+                Name = name,
+                RedUserId = userId,
+                DateCreated = DateTime.UtcNow,
+            };
+
+            this.games.Add(newGame);
+            this.games.SaveChanges();
+
+            return newGame;
+        }
+
+        // Some additional helpers
         public IQueryable<Game> GetFollowingGames(int page = 1)
         {
             return this.games
@@ -34,7 +50,7 @@
                 .Take(GameConstants.GamesPerPage);
         }
 
-        public IQueryable<Game> GetPreviousGames(int page = 1)
+        private IQueryable<Game> GetPreviousGames(int page = 1)
         {
             return this.games
                 .All()
@@ -43,7 +59,6 @@
                 .Take(GameConstants.GamesPerPage);
         }
 
-        // Some additional helpers
         private IQueryable<Game> GetFollowingGames()
         {
             return GetAll(p => p.DateCreated >= DateTime.Now);
@@ -62,6 +77,6 @@
                 .Skip((page - 1) * GameConstants.GamesPerPage)
                 .Take(GameConstants.GamesPerPage)
                 .AsQueryable<Game>();
-        } 
+        }
     }
 }

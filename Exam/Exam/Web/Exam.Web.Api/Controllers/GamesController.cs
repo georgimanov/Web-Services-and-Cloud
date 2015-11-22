@@ -6,6 +6,8 @@
     using Services.Data.Contracts;
     using Models.Games;
     using Microsoft.AspNet.Identity;
+    using Infrastructure.Validation;
+    using AutoMapper;
 
     public class GamesController : ApiController
     {
@@ -25,6 +27,22 @@
                 .ToList();
 
             return this.Ok(games);
+        }
+
+        [Authorize]
+        [ValidateModel]
+        public IHttpActionResult Post(CreateGameRequestModel model)
+        {
+            var newGame = this.games.CreateGame(
+                 model.Name,
+                 model.Number,
+                 model.UserId);
+
+            var gameResult = Mapper.Map<PublicGameResponseModel>(newGame);
+
+            //this.Request.crea
+
+            return this.Ok(gameResult);
         }
     }
 }
